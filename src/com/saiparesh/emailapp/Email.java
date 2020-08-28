@@ -3,31 +3,30 @@ package com.saiparesh.emailapp;
 import java.util.Scanner;
 
 public class Email {
+	private static final int DEFAULT_PASSWORD_LENGTH = 7;
 	private String firstName;
 	private String lastName;
 	private String password;
 	private String department;
 	private String email;
 	private String alternateEmail;
-	private int mailBoxCapacity;
+	private int mailBoxCapacity = 500;
 	private String companySuffix = "abzcompany.com";
 	
 	//Constructor to receive first and last name
 	public Email(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		System.out.println("Email created: " + this.firstName + " " +this.lastName);
 		
 		//call department set method
 		this.department = setDepartment();
-		System.out.println("Department: " + department);
 		
 		//Call for password method
-		this.password = randomPassword(7);
+		this.password = randomPassword(DEFAULT_PASSWORD_LENGTH);
 		System.out.println("Your initial password is: " + password);
 		
 		email = this.firstName.toLowerCase() + "." + this.lastName.toLowerCase() + "@" + department + "." + companySuffix;
-		System.out.println("your email is : " + email);
+
 	}
 
 	// Ask for department
@@ -56,8 +55,33 @@ public class Email {
 	
 	
 	//Set mailbox capacity
-	
+	public void setMailBoxCapacity(int capacity) {
+		this.mailBoxCapacity = capacity;
+	}
 	//Set alternate email
-	
+	public void setAlternateEmail(String altEmail) {
+		this.alternateEmail = altEmail;
+	}
 	// Change password
+	public void changePassword(String password) {
+		this.password = password;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getAlternateEmail() {
+		return alternateEmail;
+	}
+
+	public int getMailBoxCapacity() {
+		return mailBoxCapacity;
+	}
+	
+	public String showInfo() {
+		return "Display name: " + firstName + " " + lastName
+				+ ", Email: " + email
+				+ ", Mailbox Capacity: " + mailBoxCapacity;
+	}
 }
